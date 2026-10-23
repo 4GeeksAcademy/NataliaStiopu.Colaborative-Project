@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zapatilla Urban | Marca</title>
+  <meta name="description" content="Zapatilla Urban blanca de piel, cómoda y ligera para el día a día.">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen" itemscope itemtype="https://schema.org/ItemPage">
+
+  <!-- ================= NAVBAR (reutilizable) ================= -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50"
+          itemscope itemtype="https://schema.org/WebSite">
+    <meta itemprop="url" content="https://www.marca.com/">
+    <nav class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center gap-4 md:flex-nowrap" aria-label="Navegación principal">
+
+      <!-- Logo -->
+      <a href="index.html" class="text-2xl font-extrabold tracking-tight shrink-0" itemprop="name">
+        MARCA<span class="text-indigo-600">.</span>
+      </a>
+
+      <!-- Menú de cuenta (antes del buscador en móvil, a la derecha en escritorio) -->
+      <div class="ml-auto md:order-3 flex items-center gap-2">
+        <details class="relative">
+          <summary class="list-none cursor-pointer flex items-center gap-2 px-3 py-2 rounded-full hover:bg-gray-100" aria-label="Menú de cuenta de usuario">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"/>
+            </svg>
+            <span class="hidden sm:inline text-sm font-medium">Mi cuenta</span>
+          </summary>
+          <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 text-sm">
+            <li><a href="login.html" class="block px-4 py-2 hover:bg-gray-100">Iniciar sesión</a></li>
+            <li><a href="registro.html" class="block px-4 py-2 hover:bg-gray-100">Crear cuenta</a></li>
+            <li><a href="pedidos.html" class="block px-4 py-2 hover:bg-gray-100">Mis pedidos</a></li>
+          </ul>
+        </details>
+        <a href="carrito.html" class="p-2 rounded-full hover:bg-gray-100" aria-label="Carrito">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Barra de búsqueda (Schema.org SearchAction) -->
+      <form action="busqueda.html" method="get" role="search"
+            class="w-full md:flex-1 md:order-2 md:max-w-xl md:mx-auto"
+            itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
+        <meta itemprop="target" content="https://www.marca.com/busqueda.html?q={q}">
+        <label for="buscar" class="sr-only">Buscar productos</label>
+        <div class="relative">
+          <input id="buscar" name="q" type="search" placeholder="Buscar productos..." required
+                 itemprop="query-input" 
+                 class="w-full rounded-full border border-gray-300 bg-gray-100 py-2 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white">
+          <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-500 hover:text-indigo-600" aria-label="Buscar">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.2-5.2M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </nav>
+  </header>
+
+  <!-- ================= CONTENIDO PRINCIPAL ================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
+
+    <!-- Migas de pan -->
+    <nav aria-label="Ruta de navegación" class="text-sm text-gray-500 mb-6">
+      <ol class="flex flex-wrap gap-2" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="index.html" itemprop="item" class="hover:text-indigo-600"><span itemprop="name">Inicio</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <li aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="catalogo.html" itemprop="item" class="hover:text-indigo-600"><span itemprop="name">Catálogo</span></a>
+          <meta itemprop="position" content="2">
+        </li>
+        <li aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+          <span itemprop="name" class="text-gray-900 font-medium">Zapatilla Urban</span>
+          <meta itemprop="position" content="3">
+        </li>
+      </ol>
+    </nav>
+
+    <!-- ================= PRODUCTO (Schema.org Product) ================= -->
+    <article itemprop="mainEntity" itemscope itemtype="https://schema.org/Product">
+
+      <!-- Dos columnas: 1 en móvil, 2 mitades desde md -->
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
+
+        <!-- Columna izquierda: foto -->
+        <figure class="bg-white rounded-2xl shadow-sm overflow-hidden md:sticky md:top-24">
+          <img src="https://placehold.co/800x800?text=Zapatilla+Urban" alt="Zapatilla Urban blanca vista lateral"
+               class="w-full aspect-square object-cover" itemprop="image">
+          <figcaption class="sr-only">Zapatilla Urban en color blanco</figcaption>
+        </figure>
+
+        <!-- Columna derecha: información principal -->
+        <section aria-labelledby="producto-nombre" class="flex flex-col gap-6">
+          <div>
+            <p class="text-sm font-semibold text-indigo-600 uppercase" itemprop="category">Calzado</p>
+            <h1 id="producto-nombre" class="mt-1 text-3xl md:text-4xl font-extrabold" itemprop="name">Zapatilla Urban</h1>
+            <p class="mt-2 text-sm text-gray-500">Ref.: <span itemprop="sku">ZU-2026-001</span></p>
+            <meta itemprop="brand" content="MARCA">
+          </div>
+
+          <p class="text-3xl font-bold" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <span itemprop="price" content="89.99">89,99</span>&nbsp;€
+            <meta itemprop="priceCurrency" content="EUR">
+            <link itemprop="availability" href="https://schema.org/InStock">
+            <link itemprop="url" href="producto.html">
+            <span class="block mt-1 text-sm font-normal text-green-700">En stock · IVA incluido</span>
+          </p>
+
+          <form action="carrito.html" method="post" class="flex flex-col gap-6">
+            <input type="hidden" name="sku" value="ZU-2026-001">
+
+            <!-- Talla -->
+            <fieldset>
+              <div class="flex items-center justify-between mb-3">
+                <legend class="text-sm font-semibold">Talla (EU)</legend>
+                <a href="guia-tallas.html" class="text-sm text-indigo-600 hover:underline">Guía de tallas</a>
+              </div>
+              <ul class="flex flex-wrap gap-2">
+              <li>
+                <input type="radio" id="talla-38" name="talla" value="38" class="peer sr-only"   required>
+                <label for="talla-38" class="cursor-pointer flex items-center justify-center w-12 h-12 rounded-lg border border-gray-300 text-sm font-medium hover:border-indigo-500 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-disabled:opacity-40 peer-disabled:line-through peer-disabled:cursor-not-allowed">38</label>
+              </li>
+              <li>
+                <input type="radio" id="talla-39" name="talla" value="39" class="peer sr-only"   required>
+                <label for="talla-39" class="cursor-pointer flex items-center justify-center w-12 h-12 rounded-lg border border-gray-300 text-sm font-medium hover:border-indigo-500 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-disabled:opacity-40 peer-disabled:line-through peer-disabled:cursor-not-allowed">39</label>
+              </li>
+              <li>
+                <input type="radio" id="talla-40" name="talla" value="40" class="peer sr-only"   required>
+                <label for="talla-40" class="cursor-pointer flex items-center justify-center w-12 h-12 rounded-lg border border-gray-300 text-sm font-medium hover:border-indigo-500 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-disabled:opacity-40 peer-disabled:line-through peer-disabled:cursor-not-allowed">40</label>
+              </li>
+              <li>
+                <input type="radio" id="talla-41" name="talla" value="41" class="peer sr-only" checked  required>
+                <label for="talla-41" class="cursor-pointer flex items-center justify-center w-12 h-12 rounded-lg border border-gray-300 text-sm font-medium hover:border-indigo-500 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-disabled:opacity-40 peer-disabled:line-through peer-disabled:cursor-not-allowed">41</label>
+              </li>
+              <li>
+                <input type="radio" id="talla-42" name="talla" value="42" class="peer sr-only"   required>
+                <label for="talla-42" class="cursor-pointer flex items-center justify-center w-12 h-12 rounded-lg border border-gray-300 text-sm font-medium hover:border-indigo-500 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-disabled:opacity-40 peer-disabled:line-through peer-disabled:cursor-not-allowed">42</label>
+              </li>
+              <li>
+                <input type="radio" id="talla-43" name="talla" value="43" class="peer sr-only"   required>
+                <label for="talla-43" class="cursor-pointer flex items-center justify-center w-12 h-12 rounded-lg border border-gray-300 text-sm font-medium hover:border-indigo-500 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-disabled:opacity-40 peer-disabled:line-through peer-disabled:cursor-not-allowed">43</label>
+              </li>
+              <li>
+                <input type="radio" id="talla-44" name="talla" value="44" class="peer sr-only"  disabled required>
+                <label for="talla-44" class="cursor-pointer flex items-center justify-center w-12 h-12 rounded-lg border border-gray-300 text-sm font-medium hover:border-indigo-500 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-disabled:opacity-40 peer-disabled:line-through peer-disabled:cursor-not-allowed">44</label>
+              </li>
+              </ul>
+            </fieldset>
+
+            <!-- Cantidad + botón -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <div class="flex flex-col">
+                <label for="cantidad" class="text-sm font-semibold mb-2">Cantidad</label>
+                <input id="cantidad" name="cantidad" type="number" min="1" max="10" value="1" required
+                       class="w-24 h-12 rounded-lg border border-gray-300 px-3 text-center focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              </div>
+              <button type="submit"
+                      class="sm:self-end flex-1 h-12 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+                Agregar al carrito
+              </button>
+            </div>
+          </form>
+
+          <ul class="text-sm text-gray-600 space-y-1 border-t border-gray-200 pt-4">
+            <li>🚚 Envío gratis a partir de 50&nbsp;€</li>
+            <li>↩️ Devoluciones gratuitas durante 30 días</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- ================= DESCRIPCIÓN DETALLADA ================= -->
+      <section aria-labelledby="descripcion-titulo" class="mt-12 bg-white rounded-2xl shadow-sm p-6 md:p-10">
+        <h2 id="descripcion-titulo" class="text-2xl font-bold mb-4">Descripción</h2>
+        <p class="text-gray-700 leading-relaxed max-w-3xl" itemprop="description">
+          La Zapatilla Urban combina un diseño minimalista con la comodidad que necesitas para todo el día.
+          Su suela acolchada y su perfil ligero la convierten en un básico que combina con cualquier look.
+        </p>
+
+        <div class="mt-8 grid md:grid-cols-2 gap-8">
+          <section aria-labelledby="materiales-titulo">
+            <h3 id="materiales-titulo" class="text-lg font-semibold mb-3">Materiales</h3>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Exterior: <span itemprop="material">piel vacuna con acabado liso</span></li>
+              <li>Forro: algodón transpirable</li>
+              <li>Plantilla: espuma viscoelástica extraíble</li>
+              <li>Suela: caucho natural antideslizante</li>
+            </ul>
+          </section>
+
+          <section aria-labelledby="uso-titulo">
+            <h3 id="uso-titulo" class="text-lg font-semibold mb-3">Uso recomendado</h3>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Día a día en la ciudad: trabajo, clase o paseos largos</li>
+              <li>Looks casual con vaqueros, chinos o bermudas</li>
+              <li>Viajes, gracias a su ligereza y comodidad</li>
+              <li>No recomendada para running ni montaña</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <!-- ================= FOOTER (reutilizable) ================= -->
+  <footer class="bg-gray-900 text-gray-300" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="url" content="https://www.marca.com/">
+    <div class="max-w-7xl mx-auto px-4 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+      <div>
+        <p class="text-2xl font-extrabold text-white" itemprop="name">MARCA<span class="text-indigo-500">.</span></p>
+        <p class="mt-3 text-sm" itemprop="description">Moda urbana pensada para el día a día.</p>
+      </div>
+
+      <nav aria-labelledby="footer-categorias">
+        <h2 id="footer-categorias" class="text-white font-semibold mb-4">Categorías</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="calzado.html" class="hover:text-white">Calzado</a></li>
+          <li><a href="camisas.html" class="hover:text-white">Camisas</a></li>
+          <li><a href="pantalones.html" class="hover:text-white">Pantalones</a></li>
+          <li><a href="accesorios.html" class="hover:text-white">Accesorios</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-legal">
+        <h2 id="footer-legal" class="text-white font-semibold mb-4">Legal</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="terminos.html" class="hover:text-white">Términos y condiciones</a></li>
+          <li><a href="privacidad.html" class="hover:text-white">Política de privacidad</a></li>
+          <li><a href="sobre-la-marca.html" class="hover:text-white">Sobre la marca</a></li>
+        </ul>
+      </nav>
+
+      <section aria-labelledby="footer-contacto">
+        <h2 id="footer-contacto" class="text-white font-semibold mb-4">Contacto</h2>
+        <address class="not-italic space-y-2 text-sm" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <p><span itemprop="streetAddress">Calle Ejemplo 123</span>, <span itemprop="addressLocality">Madrid</span></p>
+        </address>
+        <ul class="mt-2 space-y-2 text-sm">
+          <li><a href="mailto:hola@marca.com" class="hover:text-white" itemprop="email">hola@marca.com</a></li>
+          <li><a href="tel:+34900000000" class="hover:text-white" itemprop="telephone">+34 900 000 000</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="border-t border-gray-800">
+      <p class="max-w-7xl mx-auto px-4 py-4 text-xs text-gray-500">© 2026 MARCA. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
