@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago | Marca</title>
+  <meta name="description" content="Finaliza tu compra en tres pasos: datos personales, dirección de entrega y pago con tarjeta.">
+  <meta name="robots" content="noindex">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen" itemscope itemtype="https://schema.org/CheckoutPage">
+
+  <!-- ================= NAVBAR (reutilizable) ================= -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50"
+          itemscope itemtype="https://schema.org/WebSite">
+    <meta itemprop="url" content="https://www.marca.com/">
+    <nav class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center gap-4 md:flex-nowrap" aria-label="Navegación principal">
+
+      <!-- Logo -->
+      <a href="index.html" class="text-2xl font-extrabold tracking-tight shrink-0" itemprop="name">
+        MARCA<span class="text-indigo-600">.</span>
+      </a>
+
+      <!-- Menú de cuenta (antes del buscador en móvil, a la derecha en escritorio) -->
+      <div class="ml-auto md:order-3 flex items-center gap-2">
+        <details class="relative">
+          <summary class="list-none cursor-pointer flex items-center gap-2 px-3 py-2 rounded-full hover:bg-gray-100" aria-label="Menú de cuenta de usuario">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"/>
+            </svg>
+            <span class="hidden sm:inline text-sm font-medium">Mi cuenta</span>
+          </summary>
+          <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 text-sm">
+            <li><a href="login.html" class="block px-4 py-2 hover:bg-gray-100">Iniciar sesión</a></li>
+            <li><a href="registro.html" class="block px-4 py-2 hover:bg-gray-100">Crear cuenta</a></li>
+            <li><a href="pedidos.html" class="block px-4 py-2 hover:bg-gray-100">Mis pedidos</a></li>
+          </ul>
+        </details>
+        <a href="carrito.html" class="p-2 rounded-full hover:bg-gray-100" aria-label="Carrito">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Barra de búsqueda (Schema.org SearchAction) -->
+      <form action="busqueda.html" method="get" role="search"
+            class="w-full md:flex-1 md:order-2 md:max-w-xl md:mx-auto"
+            itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
+        <meta itemprop="target" content="https://www.marca.com/busqueda.html?q={q}">
+        <label for="buscar" class="sr-only">Buscar productos</label>
+        <div class="relative">
+          <input id="buscar" name="q" type="search" placeholder="Buscar productos..." required
+                 itemprop="query-input" 
+                 class="w-full rounded-full border border-gray-300 bg-gray-100 py-2 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white">
+          <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-500 hover:text-indigo-600" aria-label="Buscar">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.2-5.2M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </nav>
+  </header>
+
+  <!-- ================= CONTENIDO PRINCIPAL ================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
+
+    <nav aria-label="Ruta de navegación" class="text-sm text-gray-500 mb-4">
+      <ol class="flex flex-wrap gap-2">
+        <li><a href="index.html" class="hover:text-indigo-600">Inicio</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="carrito.html" class="hover:text-indigo-600">Carrito</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page" class="text-gray-900 font-medium">Pago</li>
+      </ol>
+    </nav>
+
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Finalizar compra</h1>
+    <p class="text-gray-600 mb-8">Completa los tres pasos para confirmar tu pedido.</p>
+
+    <div class="grid lg:grid-cols-3 gap-8 items-start">
+
+      <!-- ================= FORMULARIO EN 3 PASOS ================= -->
+      <form action="confirmacion.html" method="post" class="lg:col-span-2" novalidate>
+        <!-- Indicador de progreso -->
+        <ol class="flex items-center gap-2 mb-6 text-xs font-semibold uppercase tracking-wide" aria-label="Progreso del pago">
+          <li class="flex-1 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center">1</span>
+            <span class="text-indigo-600">Datos</span>
+          </li>
+          <li class="flex-1 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center">2</span>
+            <span class="text-gray-500">Entrega</span>
+          </li>
+          <li class="flex-1 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center">3</span>
+            <span class="text-gray-500">Pago</span>
+          </li>
+        </ol>
+
+        <ol class="space-y-4">
+      <!-- Paso 1 -->
+      <li>
+        <details open class="group bg-white rounded-2xl shadow-sm overflow-hidden">
+          <summary class="list-none cursor-pointer flex items-center gap-4 p-5 md:p-6 hover:bg-gray-50">
+            <span class="shrink-0 w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold group-open:bg-indigo-600 group-open:text-white">1</span>
+            <span class="flex-1">
+              <span class="block text-lg font-bold">Datos personales</span>
+              <span class="block text-sm text-gray-500">Cómo te identificamos y cómo contactamos contigo.</span>
+            </span>
+            <svg class="w-5 h-5 text-gray-400 shrink-0 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+            </svg>
+          </summary>
+
+          <div class="px-5 md:px-6 pb-6 border-t border-gray-100 pt-5">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="sm:col-span-2">
+                <label for="nombre" class="block text-sm font-medium mb-1">Nombre *</label>
+                <input id="nombre" name="nombre" type="text" value="" required autocomplete="given-name" 
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                
+              </div>
+              <div class="sm:col-span-2">
+                <label for="apellidos" class="block text-sm font-medium mb-1">Apellidos *</label>
+                <input id="apellidos" name="apellidos" type="text" value="" required autocomplete="family-name" 
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                
+              </div>
+              <div class="sm:col-span-2">
+                <label for="email" class="block text-sm font-medium mb-1">Correo electrónico *</label>
+                <input id="email" name="email" type="email" value="" required autocomplete="email" aria-describedby="email-ayuda"
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                <p id="email-ayuda" class="mt-1 text-xs text-gray-500">Te enviaremos la confirmación del pedido a esta dirección.</p>
+              </div>
+              <div class="sm:col-span-2">
+                <label for="telefono" class="block text-sm font-medium mb-1">Teléfono *</label>
+                <input id="telefono" name="telefono" type="tel" value="" required autocomplete="tel" 
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3 justify-end">
+              
+              <a href="carrito.html" class="px-5 py-2.5 rounded-full border border-gray-300 text-sm font-semibold hover:bg-gray-100">Volver al carrito</a>
+              <button type="submit" class="px-6 py-2.5 rounded-full bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500">
+                Continuar
+              </button>
+            </div>
+          </div>
+        </details>
+      </li>
+      <!-- Paso 2 -->
+      <li>
+        <details  class="group bg-white rounded-2xl shadow-sm overflow-hidden">
+          <summary class="list-none cursor-pointer flex items-center gap-4 p-5 md:p-6 hover:bg-gray-50">
+            <span class="shrink-0 w-10 h-10 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center font-bold group-open:bg-indigo-600 group-open:text-white">2</span>
+            <span class="flex-1">
+              <span class="block text-lg font-bold">Dirección de entrega</span>
+              <span class="block text-sm text-gray-500">¿Dónde te enviamos el pedido?</span>
+            </span>
+            <svg class="w-5 h-5 text-gray-400 shrink-0 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+            </svg>
+          </summary>
+
+          <div class="px-5 md:px-6 pb-6 border-t border-gray-100 pt-5">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="sm:col-span-2">
+                <label for="direccion" class="block text-sm font-medium mb-1">Dirección *</label>
+                <input id="direccion" name="direccion" type="text" value="" required autocomplete="street-address" 
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                
+              </div>
+              <div class="sm:col-span-2">
+                <label for="piso" class="block text-sm font-medium mb-1">Piso, puerta, escalera (opcional)</label>
+                <input id="piso" name="piso" type="text" value=""  autocomplete="address-line2" 
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                
+              </div>
+              <div class="">
+                <label for="cp" class="block text-sm font-medium mb-1">Código postal *</label>
+                <input id="cp" name="cp" type="text" value="" required autocomplete="postal-code" 
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                
+              </div>
+              <div class="">
+                <label for="ciudad" class="block text-sm font-medium mb-1">Ciudad *</label>
+                <input id="ciudad" name="ciudad" type="text" value="" required autocomplete="address-level2" 
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                
+              </div>
+              <div class="">
+                <label for="provincia" class="block text-sm font-medium mb-1">Provincia *</label>
+                <input id="provincia" name="provincia" type="text" value="" required autocomplete="address-level1" 
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                
+              </div>
+              <div class="">
+                <label for="pais" class="block text-sm font-medium mb-1">País *</label>
+                <input id="pais" name="pais" type="text" value="España" required autocomplete="country-name" 
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3 justify-end">
+              <button type="button" class="px-5 py-2.5 rounded-full border border-gray-300 text-sm font-semibold hover:bg-gray-100">Volver</button>
+              
+              <button type="submit" class="px-6 py-2.5 rounded-full bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500">
+                Continuar
+              </button>
+            </div>
+          </div>
+        </details>
+      </li>
+      <!-- Paso 3 -->
+      <li>
+        <details  class="group bg-white rounded-2xl shadow-sm overflow-hidden">
+          <summary class="list-none cursor-pointer flex items-center gap-4 p-5 md:p-6 hover:bg-gray-50">
+            <span class="shrink-0 w-10 h-10 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center font-bold group-open:bg-indigo-600 group-open:text-white">3</span>
+            <span class="flex-1">
+              <span class="block text-lg font-bold">Pago con tarjeta</span>
+              <span class="block text-sm text-gray-500">Introduce los datos de tu tarjeta para finalizar.</span>
+            </span>
+            <svg class="w-5 h-5 text-gray-400 shrink-0 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+            </svg>
+          </summary>
+
+          <div class="px-5 md:px-6 pb-6 border-t border-gray-100 pt-5">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="sm:col-span-2">
+                <label for="titular" class="block text-sm font-medium mb-1">Titular de la tarjeta *</label>
+                <input id="titular" name="titular" type="text" value="" required autocomplete="cc-name" 
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                
+              </div>
+              <div class="sm:col-span-2">
+                <label for="tarjeta" class="block text-sm font-medium mb-1">Número de tarjeta *</label>
+                <input id="tarjeta" name="tarjeta" type="text" value="4242 4242 4242 4242" required autocomplete="cc-number" aria-describedby="tarjeta-ayuda"
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                <p id="tarjeta-ayuda" class="mt-1 text-xs text-gray-500">Solo el prototipo: no introduzcas datos reales de tarjeta.</p>
+              </div>
+              <div class="sm:col-span-1">
+                <label for="caducidad" class="block text-sm font-medium mb-1">Fecha de caducidad *</label>
+                <input id="caducidad" name="caducidad" type="text" inputmode="numeric" placeholder="MM/AA" required autocomplete="cc-exp"
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+              </div>
+              <div class="sm:col-span-1">
+                <label for="cvv" class="block text-sm font-medium mb-1">CVV *</label>
+                <input id="cvv" name="cvv" type="text" inputmode="numeric" maxlength="4" placeholder="123" required autocomplete="cc-csc"
+                       aria-describedby="cvv-ayuda"
+                       class="w-full h-11 rounded-lg border border-gray-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                <p id="cvv-ayuda" class="mt-1 text-xs text-gray-500">3 dígitos del dorso de la tarjeta.</p>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3 justify-end">
+              <button type="button" class="px-5 py-2.5 rounded-full border border-gray-300 text-sm font-semibold hover:bg-gray-100">Volver</button>
+              
+              <button type="submit" class="px-6 py-2.5 rounded-full bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500">
+                Pagar ahora · 266,15 €
+              </button>
+            </div>
+          </div>
+        </details>
+      </li>
+        </ol>
+      </form>
+
+      <!-- ================= RESUMEN DEL PEDIDO ================= -->
+      <aside aria-labelledby="resumen-titulo" class="bg-white rounded-2xl shadow-sm p-6 lg:sticky lg:top-24">
+        <h2 id="resumen-titulo" class="text-xl font-bold mb-4">Tu pedido</h2>
+
+        <ul class="space-y-3 text-sm">
+          <li class="flex justify-between gap-3">
+            <span class="text-gray-600">Zapatilla Urban · 41 × 1</span>
+            <span class="font-medium">89,99&nbsp;€</span>
+          </li>
+          <li class="flex justify-between gap-3">
+            <span class="text-gray-600">Camisa de lino · M × 2</span>
+            <span class="font-medium">99,98&nbsp;€</span>
+          </li>
+          <li class="flex justify-between gap-3">
+            <span class="text-gray-600">Cinturón de piel · Única × 1</span>
+            <span class="font-medium">29,99&nbsp;€</span>
+          </li>
+        </ul>
+
+        <dl class="mt-5 pt-5 border-t border-gray-200 space-y-3 text-sm">
+          <div class="flex justify-between">
+            <dt class="text-gray-600">Subtotal</dt>
+            <dd class="font-medium">219,96&nbsp;€</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-gray-600">Impuestos (21&nbsp;%)</dt>
+            <dd class="font-medium">46,19&nbsp;€</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-gray-600">Envío</dt>
+            <dd class="font-medium text-green-700">Gratis</dd>
+          </div>
+          <div class="flex justify-between border-t border-gray-200 pt-3 text-base">
+            <dt class="font-bold">Total</dt>
+            <dd class="font-extrabold text-lg">266,15&nbsp;€</dd>
+          </div>
+        </dl>
+
+        <a href="carrito.html" class="mt-5 inline-block text-sm font-semibold text-indigo-600 hover:underline">Editar carrito</a>
+
+        <p class="mt-6 flex items-start gap-2 text-xs text-gray-500">
+          <svg class="w-4 h-4 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m9 0h-9m9 0a2.25 2.25 0 012.25 2.25v6A2.25 2.25 0 0115.75 21h-7.5A2.25 2.25 0 016 18.75v-6A2.25 2.25 0 018.25 10.5m7.5 0h-7.5"/>
+          </svg>
+          Pago cifrado y conexión segura. Este formulario es un prototipo de clase y no procesa pagos reales.
+        </p>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ================= FOOTER (reutilizable) ================= -->
+  <footer class="bg-gray-900 text-gray-300" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="url" content="https://www.marca.com/">
+    <div class="max-w-7xl mx-auto px-4 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+      <div>
+        <p class="text-2xl font-extrabold text-white" itemprop="name">MARCA<span class="text-indigo-500">.</span></p>
+        <p class="mt-3 text-sm" itemprop="description">Moda urbana pensada para el día a día.</p>
+      </div>
+
+      <nav aria-labelledby="footer-categorias">
+        <h2 id="footer-categorias" class="text-white font-semibold mb-4">Categorías</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="calzado.html" class="hover:text-white">Calzado</a></li>
+          <li><a href="camisas.html" class="hover:text-white">Camisas</a></li>
+          <li><a href="pantalones.html" class="hover:text-white">Pantalones</a></li>
+          <li><a href="accesorios.html" class="hover:text-white">Accesorios</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-legal">
+        <h2 id="footer-legal" class="text-white font-semibold mb-4">Legal</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="terminos.html" class="hover:text-white">Términos y condiciones</a></li>
+          <li><a href="privacidad.html" class="hover:text-white">Política de privacidad</a></li>
+          <li><a href="sobre-la-marca.html" class="hover:text-white">Sobre la marca</a></li>
+        </ul>
+      </nav>
+
+      <section aria-labelledby="footer-contacto">
+        <h2 id="footer-contacto" class="text-white font-semibold mb-4">Contacto</h2>
+        <address class="not-italic space-y-2 text-sm" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <p><span itemprop="streetAddress">Calle Ejemplo 123</span>, <span itemprop="addressLocality">Madrid</span></p>
+        </address>
+        <ul class="mt-2 space-y-2 text-sm">
+          <li><a href="mailto:hola@marca.com" class="hover:text-white" itemprop="email">hola@marca.com</a></li>
+          <li><a href="tel:+34900000000" class="hover:text-white" itemprop="telephone">+34 900 000 000</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="border-t border-gray-800">
+      <p class="max-w-7xl mx-auto px-4 py-4 text-xs text-gray-500">© 2026 MARCA. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
