@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito | Marca</title>
+  <meta name="description" content="Revisa los productos de tu carrito antes de finalizar la compra.">
+  <meta name="robots" content="noindex">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+
+  <!-- ================= NAVBAR (reutilizable) ================= -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50"
+          itemscope itemtype="https://schema.org/WebSite">
+    <meta itemprop="url" content="https://www.marca.com/">
+    <nav class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center gap-4 md:flex-nowrap" aria-label="Navegación principal">
+
+      <!-- Logo -->
+      <a href="index.html" class="text-2xl font-extrabold tracking-tight shrink-0" itemprop="name">
+        MARCA<span class="text-indigo-600">.</span>
+      </a>
+
+      <!-- Menú de cuenta (antes del buscador en móvil, a la derecha en escritorio) -->
+      <div class="ml-auto md:order-3 flex items-center gap-2">
+        <details class="relative">
+          <summary class="list-none cursor-pointer flex items-center gap-2 px-3 py-2 rounded-full hover:bg-gray-100" aria-label="Menú de cuenta de usuario">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a7.5 7.5 0 0115 0"/>
+            </svg>
+            <span class="hidden sm:inline text-sm font-medium">Mi cuenta</span>
+          </summary>
+          <ul class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 text-sm">
+            <li><a href="login.html" class="block px-4 py-2 hover:bg-gray-100">Iniciar sesión</a></li>
+            <li><a href="registro.html" class="block px-4 py-2 hover:bg-gray-100">Crear cuenta</a></li>
+            <li><a href="pedidos.html" class="block px-4 py-2 hover:bg-gray-100">Mis pedidos</a></li>
+          </ul>
+        </details>
+        <a href="carrito.html" class="p-2 rounded-full hover:bg-gray-100" aria-label="Carrito">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Barra de búsqueda (Schema.org SearchAction) -->
+      <form action="busqueda.html" method="get" role="search"
+            class="w-full md:flex-1 md:order-2 md:max-w-xl md:mx-auto"
+            itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
+        <meta itemprop="target" content="https://www.marca.com/busqueda.html?q={q}">
+        <label for="buscar" class="sr-only">Buscar productos</label>
+        <div class="relative">
+          <input id="buscar" name="q" type="search" placeholder="Buscar productos..." required
+                 itemprop="query-input" 
+                 class="w-full rounded-full border border-gray-300 bg-gray-100 py-2 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white">
+          <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-500 hover:text-indigo-600" aria-label="Buscar">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.2-5.2M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </nav>
+  </header>
+
+  <!-- ================= CONTENIDO PRINCIPAL ================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
+
+    <nav aria-label="Ruta de navegación" class="text-sm text-gray-500 mb-4">
+      <ol class="flex gap-2">
+        <li><a href="index.html" class="hover:text-indigo-600">Inicio</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page" class="text-gray-900 font-medium">Carrito</li>
+      </ol>
+    </nav>
+
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-6">Tu carrito</h1>
+
+    <div class="grid lg:grid-cols-3 gap-8 items-start">
+
+      <!-- ================= LISTADO DE PRODUCTOS ================= -->
+      <section aria-labelledby="lista-titulo" class="lg:col-span-2 bg-white rounded-2xl shadow-sm">
+        <div class="flex items-center justify-between px-4 md:px-6 py-4 border-b border-gray-200">
+          <h2 id="lista-titulo" class="font-semibold">Productos (<span>3</span>)</h2>
+          <a href="catalogo.html" class="text-sm font-semibold text-indigo-600 hover:underline">Seguir comprando</a>
+        </div>
+
+        <ul class="divide-y divide-gray-200" role="list">
+          <li class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <a href="producto.html" class="shrink-0">
+              <img src="https://placehold.co/200x200?text=Zapatilla+Urban" alt="Zapatilla Urban"
+                   class="w-24 h-24 md:w-28 md:h-28 rounded-xl object-cover bg-gray-100">
+            </a>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <h2 class="font-semibold text-lg">
+                    <a href="producto.html" class="hover:text-indigo-600">Zapatilla Urban</a>
+                  </h2>
+                  <p class="text-sm text-gray-500">Ref.: ZU-2026-001 · Talla: 41</p>
+                </div>
+                <button type="button" class="text-sm text-gray-400 hover:text-red-600" aria-label="Eliminar Zapatilla Urban de la lista">
+                  Eliminar
+                </button>
+              </div>
+
+              <div class="mt-4 flex flex-wrap items-end justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <div class="flex flex-col">
+                    <label for="cant-ZU-2026-001" class="text-xs text-gray-500 mb-1">Cantidad</label>
+                    <input id="cant-ZU-2026-001" name="cantidad-ZU-2026-001" type="number" min="0" max="10" value="1"
+                           class="w-20 h-10 rounded-lg border border-gray-300 px-3 text-center text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  </div>
+                  <p class="text-sm text-gray-500 pb-3">89,99&nbsp;€ / ud.</p>
+                </div>
+
+                <p class="pb-2 text-lg font-bold">89,99&nbsp;€</p>
+              </div>
+            </div>
+          </li>
+          <li class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <a href="producto.html" class="shrink-0">
+              <img src="https://placehold.co/200x200?text=Camisa+de+lino" alt="Camisa de lino"
+                   class="w-24 h-24 md:w-28 md:h-28 rounded-xl object-cover bg-gray-100">
+            </a>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <h2 class="font-semibold text-lg">
+                    <a href="producto.html" class="hover:text-indigo-600">Camisa de lino</a>
+                  </h2>
+                  <p class="text-sm text-gray-500">Ref.: CL-2026-014 · Talla: M</p>
+                </div>
+                <button type="button" class="text-sm text-gray-400 hover:text-red-600" aria-label="Eliminar Camisa de lino de la lista">
+                  Eliminar
+                </button>
+              </div>
+
+              <div class="mt-4 flex flex-wrap items-end justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <div class="flex flex-col">
+                    <label for="cant-CL-2026-014" class="text-xs text-gray-500 mb-1">Cantidad</label>
+                    <input id="cant-CL-2026-014" name="cantidad-CL-2026-014" type="number" min="0" max="10" value="2"
+                           class="w-20 h-10 rounded-lg border border-gray-300 px-3 text-center text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  </div>
+                  <p class="text-sm text-gray-500 pb-3">49,99&nbsp;€ / ud.</p>
+                </div>
+
+                <p class="pb-2 text-lg font-bold">99,98&nbsp;€</p>
+              </div>
+            </div>
+          </li>
+          <li class="p-4 md:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <a href="producto.html" class="shrink-0">
+              <img src="https://placehold.co/200x200?text=Cintur%C3%B3n" alt="Cinturón de piel"
+                   class="w-24 h-24 md:w-28 md:h-28 rounded-xl object-cover bg-gray-100">
+            </a>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <h2 class="font-semibold text-lg">
+                    <a href="producto.html" class="hover:text-indigo-600">Cinturón de piel</a>
+                  </h2>
+                  <p class="text-sm text-gray-500">Ref.: CP-2026-007 · Talla: Única</p>
+                </div>
+                <button type="button" class="text-sm text-gray-400 hover:text-red-600" aria-label="Eliminar Cinturón de piel de la lista">
+                  Eliminar
+                </button>
+              </div>
+
+              <div class="mt-4 flex flex-wrap items-end justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <div class="flex flex-col">
+                    <label for="cant-CP-2026-007" class="text-xs text-gray-500 mb-1">Cantidad</label>
+                    <input id="cant-CP-2026-007" name="cantidad-CP-2026-007" type="number" min="0" max="10" value="1"
+                           class="w-20 h-10 rounded-lg border border-gray-300 px-3 text-center text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  </div>
+                  <p class="text-sm text-gray-500 pb-3">29,99&nbsp;€ / ud.</p>
+                </div>
+
+                <p class="pb-2 text-lg font-bold">29,99&nbsp;€</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ================= CUADRO DE TOTALIZACIÓN ================= -->
+      <section aria-labelledby="resumen-titulo" class="bg-white rounded-2xl shadow-sm p-6 lg:sticky lg:top-24">
+        <h2 id="resumen-titulo" class="text-xl font-bold mb-4">Resumen del pedido</h2>
+
+        <dl class="space-y-3 text-sm">
+          <div class="flex justify-between">
+            <dt class="text-gray-600">Subtotal</dt>
+            <dd class="font-medium">219,96&nbsp;€</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-gray-600">Impuestos (21&nbsp;%)</dt>
+            <dd class="font-medium">46,19&nbsp;€</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-gray-600">Envío</dt>
+            <dd class="font-medium text-green-700">Gratis</dd>
+          </div>
+          <div class="flex justify-between border-t border-gray-200 pt-3 text-base">
+            <dt class="font-bold">Total</dt>
+            <dd class="font-extrabold text-lg">266,15&nbsp;€</dd>
+          </div>
+        </dl>
+
+        <p class="mt-2 text-xs text-gray-500">IVA incluido. Gastos de envío calculados en el pago.</p>
+
+        <form action="checkout.html" method="post" class="mt-6">
+          <button type="submit" class="w-full h-12 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold">
+            Comprar
+          </button>
+        </form>
+
+        <ul class="mt-6 space-y-2 text-xs text-gray-500">
+          <li>🔒 Pago seguro</li>
+          <li>↩️ Devoluciones gratuitas durante 30 días</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Sugerencia de continuación -->
+    <section aria-labelledby="sugeridos-titulo" class="mt-12">
+      <h2 id="sugeridos-titulo" class="text-2xl font-bold mb-6">También te puede interesar</h2>
+      <ul class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4" role="list">
+        <li class="snap-start shrink-0 w-48 md:w-56">
+          <article class="bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden h-full">
+            <a href="producto.html">
+              <img src="https://placehold.co/400x400?text=Sneaker" alt="Sneaker Runner" class="w-full aspect-square object-cover">
+              <div class="p-4">
+                <h3 class="font-semibold">Sneaker Runner</h3>
+                <p class="mt-1 font-bold">79,99&nbsp;€</p>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="snap-start shrink-0 w-48 md:w-56">
+          <article class="bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden h-full">
+            <a href="producto.html">
+              <img src="https://placehold.co/400x400?text=Pantal%C3%B3n" alt="Pantalón chino" class="w-full aspect-square object-cover">
+              <div class="p-4">
+                <h3 class="font-semibold">Pantalón chino</h3>
+                <p class="mt-1 font-bold">59,99&nbsp;€</p>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="snap-start shrink-0 w-48 md:w-56">
+          <article class="bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden h-full">
+            <a href="producto.html">
+              <img src="https://placehold.co/400x400?text=Gorra" alt="Gorra Classic" class="w-full aspect-square object-cover">
+              <div class="p-4">
+                <h3 class="font-semibold">Gorra Classic</h3>
+                <p class="mt-1 font-bold">24,99&nbsp;€</p>
+              </div>
+            </a>
+          </article>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER (reutilizable) ================= -->
+  <footer class="bg-gray-900 text-gray-300" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="url" content="https://www.marca.com/">
+    <div class="max-w-7xl mx-auto px-4 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+      <div>
+        <p class="text-2xl font-extrabold text-white" itemprop="name">MARCA<span class="text-indigo-500">.</span></p>
+        <p class="mt-3 text-sm" itemprop="description">Moda urbana pensada para el día a día.</p>
+      </div>
+
+      <nav aria-labelledby="footer-categorias">
+        <h2 id="footer-categorias" class="text-white font-semibold mb-4">Categorías</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="calzado.html" class="hover:text-white">Calzado</a></li>
+          <li><a href="camisas.html" class="hover:text-white">Camisas</a></li>
+          <li><a href="pantalones.html" class="hover:text-white">Pantalones</a></li>
+          <li><a href="accesorios.html" class="hover:text-white">Accesorios</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-legal">
+        <h2 id="footer-legal" class="text-white font-semibold mb-4">Legal</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="terminos.html" class="hover:text-white">Términos y condiciones</a></li>
+          <li><a href="privacidad.html" class="hover:text-white">Política de privacidad</a></li>
+          <li><a href="sobre-la-marca.html" class="hover:text-white">Sobre la marca</a></li>
+        </ul>
+      </nav>
+
+      <section aria-labelledby="footer-contacto">
+        <h2 id="footer-contacto" class="text-white font-semibold mb-4">Contacto</h2>
+        <address class="not-italic space-y-2 text-sm" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <p><span itemprop="streetAddress">Calle Ejemplo 123</span>, <span itemprop="addressLocality">Madrid</span></p>
+        </address>
+        <ul class="mt-2 space-y-2 text-sm">
+          <li><a href="mailto:hola@marca.com" class="hover:text-white" itemprop="email">hola@marca.com</a></li>
+          <li><a href="tel:+34900000000" class="hover:text-white" itemprop="telephone">+34 900 000 000</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="border-t border-gray-800">
+      <p class="max-w-7xl mx-auto px-4 py-4 text-xs text-gray-500">© 2026 MARCA. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
